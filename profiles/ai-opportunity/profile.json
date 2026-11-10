@@ -1,0 +1,57 @@
+{
+  "id": "ai-opportunity",
+  "name": "AI Opportunity Radar",
+  "display_names": {
+    "zh": "AI 变现雷达"
+  },
+  "match": "match.md",
+  "analysis": "analysis.md",
+  "content": {
+    "analysis_max_chars": 10000,
+    "enrichment_max_chars": 18000,
+    "sampling": "head-middle-tail"
+  },
+  "enrichment": {
+    "prompt": "enrichment.md",
+    "blocks": [
+      {
+        "id": "summary",
+        "type": "section",
+        "tools": [],
+        "primary": true
+      },
+      {
+        "id": "why_now",
+        "type": "section",
+        "tools": ["web_search"]
+      },
+      {
+        "id": "product_angle",
+        "type": "section",
+        "tools": []
+      },
+      {
+        "id": "service_angle",
+        "type": "section",
+        "tools": []
+      },
+      {
+        "id": "market_signal",
+        "type": "section",
+        "tools": ["web_search"]
+      },
+      {
+        "id": "risk",
+        "type": "section",
+        "tools": [],
+        "optional": true
+      },
+      {
+        "id": "community_discussion",
+        "type": "section",
+        "tools": [],
+        "optional": true
+      }
+    ]
+  }
+}

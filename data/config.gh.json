@@ -1,0 +1,113 @@
+{
+  "ai": {
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "base_url": "https://api.deepseek.com",
+    "api_key_env": "DEEPSEEK_API_KEY",
+    "temperature": 0.3,
+    "max_tokens": 8192,
+    "throttle_sec": 1,
+    "languages": ["zh", "en"],
+    "analysis_concurrency": 5,
+    "enrichment_concurrency": 3
+  },
+  "processing": {
+    "profiles_dir": "profiles",
+    "default_profile": "ai-opportunity",
+    "profile_settings": {
+      "ai-opportunity": {
+        "threshold": 5.0,
+        "topic_dedup": true
+      },
+      "tech-news": {
+        "threshold": 7.0,
+        "topic_dedup": true
+      }
+    }
+  },
+  "sources": {
+    "hackernews": {
+      "enabled": true,
+      "fetch_top_stories": 40,
+      "min_score": 80,
+      "profile": "ai-opportunity"
+    },
+    "rss": [
+      {
+        "name": "GitHub Trending - Daily",
+        "url": "https://mshibanami.github.io/GitHubTrendingRSS/daily/all.xml",
+        "enabled": true,
+        "category": "github-trending",
+        "profile": "ai-opportunity"
+      },
+      {
+        "name": "Simon Willison",
+        "url": "https://simonwillison.net/atom/everything/",
+        "enabled": true,
+        "category": "ai-tools",
+        "profile": "ai-opportunity",
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "Latent Space",
+        "url": "https://www.latent.space/feed",
+        "enabled": true,
+        "category": "ai-engineering",
+        "profile": "ai-opportunity"
+      },
+      {
+        "name": "Hacker News Show HN",
+        "url": "https://hnrss.org/show?points=40",
+        "enabled": true,
+        "category": "show-hn",
+        "profile": "ai-opportunity"
+      }
+    ],
+    "reddit": {
+      "enabled": true,
+      "subreddits": [
+        {
+          "subreddit": "LocalLLaMA",
+          "enabled": true,
+          "sort": "hot",
+          "time_filter": "day",
+          "fetch_limit": 15,
+          "min_score": 50,
+          "profile": "ai-opportunity"
+        },
+        {
+          "subreddit": "SaaS",
+          "enabled": true,
+          "sort": "hot",
+          "time_filter": "day",
+          "fetch_limit": 10,
+          "min_score": 40,
+          "profile": "ai-opportunity"
+        }
+      ],
+      "users": [],
+      "fetch_comments": 8
+    },
+    "telegram": {
+      "enabled": true,
+      "channels": [
+        {
+          "channel": "zaihuapd",
+          "enabled": true,
+          "fetch_limit": 20,
+          "profile": "ai-opportunity"
+        }
+      ]
+    }
+  },
+  "collection": {
+    "time_window_hours": 24
+  },
+  "digest": {
+    "max_items": 10,
+    "profile_order": ["ai-opportunity"],
+    "category_groups": {},
+    "default_group": "other",
+    "default_group_limit": null
+  }
+}
